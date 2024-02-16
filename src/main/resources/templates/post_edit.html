@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html
+xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/Fragments/head::head">
+
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <div class="bg-box">
+      <img src="/images/hero-bg.jpg" alt="">
+    </div>
+    <!-- header section strats -->
+    <header th:replace="/Fragments/header::header">
+    <!-- end header section -->
+  </div>
+
+  <!-- about section -->
+
+  <!-- end about section -->
+  <section class="food_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Edit Post
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container">
+            <form action="#"
+            th:action="@{'/posts/{id}/edit' (id= ${post.id})}"
+            th:object="${post}"
+            method="post">
+              <div class ="form-group">
+                <input id="account" name ="account" type="hidden" th:field="*{account}" />
+                <input id="title" name ="email" type="text" th:field="*{title}" class="form-control"  placeholder="title" />
+                <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}"class="alert alert-danger" role="alert">Title Error</p>
+              </div>
+              <div class ="form-group">
+                <textarea id = "editor" name ="body" th:field="*{body}"></textarea>
+                <p th:if="${#fields.hasErrors('body')}" th:errors="*{body}"class="alert alert-danger" role="alert">Body Error</p>
+              </div>
+              <div class ="form-group">
+                <button type="submit" class="btn btn-primary">
+                  Update Post
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- footer section -->
+  <footer th:replace="/Fragments/footer::footer">
+  <!-- footer section -->
+
+
+</body>
+
+</html>

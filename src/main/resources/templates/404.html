@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html
+xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/Fragments/head::head">
+
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <div class="bg-box">
+      <img src="/images/hero-bg.jpg" alt="">
+    </div>
+    <!-- header section strats -->
+    <header th:replace="/Fragments/header::header"></head>
+    <!-- end header section -->
+  </div>
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container  ">
+      <div class = "posts" th:each="post : ${posts}">
+        <h3 th:text="${post.title}">Title</h3>
+        <p th:text= "${post.body}">Body</p>
+      <hr/>
+      
+    </div>
+  </section>
+
+  <!-- end about section -->
+  <h2>Page not found</h2>
+  <!-- footer section -->
+  <footer th:replace="/Fragments/footer::footer"></head>
+  <!-- footer section -->
+
+
+</body>
+
+</html>

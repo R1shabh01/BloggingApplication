@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html
+xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/Fragments/head::head">
+
+
+<body class="sub_page">
+
+  <div class="hero_area">
+    <div class="bg-box">
+      <img src="/images/hero-bg.jpg" alt="">
+    </div>
+    <!-- header section strats -->
+    <header th:replace="/Fragments/header::header"></head>
+    <!-- end header section -->
+  </div>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Danger</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div> 
+      <div class="modal-body">
+        Are You Sure ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <a th:href="@{'/posts/ '+ ${post.id} +'/delete'}" class="btn btn-danger" role=" button" aria-pressed="true">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container  ">
+      <div class = "post">
+        <h3><a th:text="${post.title}">Title</a></h3>
+        <h5 th:text="'Author : '+ ${post.account.firstname} + ' |  Created At : ' + ${#temporals.format(post.createdAt,'dd-MM-yyyy HH:mm')} +
+        ' | Updated At :'+ ${#temporals.format(post.updatedAt,'dd-MM-yyyy HH:mm')}"></h5>
+        <p th:utext= "${post.body}">Body</p>
+      <hr/>
+      <div sec:authorize = "isAuthenticated()" th:if="${isOwner}">
+      <a th:href="@{'/posts/ '+ ${post.id}+'/edit'}" class="btn btn-secondary btn-lg active" role=" button" aria-pressed="true">Edit</a> | 
+      <button type="button" class="btn btn-danger btn-lg active" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Delete
+      </button>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+  <!-- footer section -->
+  <footer th:replace="/Fragments/footer::footer"></head>
+  <!-- footer section -->
+
+
+</body>
+
+</html>
